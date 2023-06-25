@@ -6,8 +6,6 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 let meuAvatar=''
-let contador =0;
-const publi =[]
 const login=[];
 const tweets=[
 	{
@@ -31,7 +29,6 @@ app.post('/sign-up', (req,res) =>{
 
 app.get('/tweets', (req,res) =>{
     
-    tweets.push(publi)
     res.status(200).send(tweets)
     
 })
