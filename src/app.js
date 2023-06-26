@@ -14,6 +14,8 @@ let tweets=[
 app.post('/sign-up', (req,res) =>{
     const {username, avatar} = req.body;
     const loginPost={username,avatar};
+    
+
     /*if(!username || !avatar){
         return res.status(401).send('O envio dos dados são obrigatórios')
     }*/
@@ -32,13 +34,15 @@ app.get('/tweets', (req,res) =>{
 
 app.post('/tweets', (req,res) =>{
     
-   
-    const {username, tweet} = req.body
-    let nome = username
-    if(!nome){
-        return res.status(401).send('UNAUTHORIZED')
-    }
     
+    const {username, tweet} = req.body
+    const user = login.find( item => item[0] === username)
+    if(!user){
+        return res.status(401).send('UNAUTHORIZED')
+        console.log(user)
+    
+    }
+   
     const dados ={
         username,
         tweet,
@@ -58,8 +62,10 @@ app.post('/tweets', (req,res) =>{
         
         
     }
-    res.send('ok')
 
+    res.send('ok')
+    login = {};
+    
     
     
     
